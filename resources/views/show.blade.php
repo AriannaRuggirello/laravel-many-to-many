@@ -13,6 +13,13 @@
             <span class="col-lg-3  bg-primary text-light rounded mx-3">
                 Type: {{ $projects->type->name }}
             </span>
+
+            <span class="col-lg-3  bg-primary text-light rounded mx-3">
+                Type:
+                @foreach ($projects->technologies as $technology)
+                    <span>{{ $technology->name }}</span>
+                @endforeach
+            </span>
         </div>
 
     </div>
