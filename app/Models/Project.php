@@ -13,6 +13,7 @@ class Project extends Model
         'publish_date',
         'description',
 
+        'type_id'
     ];
 
     use HasFactory;

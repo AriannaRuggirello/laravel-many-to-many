@@ -27,6 +27,7 @@
                 @foreach ($types as $type)
                     <option value="{{ $type->id }}">
                         {{ $type->name }}
+                        {{ $type->type_id }}
                     </option>
                 @endforeach
             </select>
