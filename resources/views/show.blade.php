@@ -14,12 +14,14 @@
                 Type: {{ $project->type->name }}
             </span>
 
-            <span class="col-lg-3  bg-success text-light rounded mx-3">
+            <div class="row">
                 Technology:
                 @foreach ($project->technologies as $technology)
                     <span>{{ $technology->name }}</span>
                 @endforeach
-            </span>
+            </div>
+
+
         </div>
         <a class="btn btn-primary" href="{{ route('project.edit', $project->id) }}">
             EDIT
