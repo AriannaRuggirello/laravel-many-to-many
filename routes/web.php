@@ -4,44 +4,31 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Admin\ProjectController;
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
-
+// Rotta per visualizzare l'elenco di tutti i progetti
 Route::get('/', [ProjectController::class, 'index'])->name('index');
 
+Route::get('/create', [ProjectController::class, 'create'])
+    ->middleware(['auth']) // Middleware per assicurarsi che l'utente sia autenticato
+    ->name('project.create');// Rotta per salvare un nuovo progetto nel database
 
-Route :: get('/show/{id}', [ProjectController :: class, 'show'])->middleware(['auth'])->name('project.show');
+Route::post('/store', [ProjectController::class, 'store'])
+    ->middleware(['auth'])
+    ->name('project.store');// Rotta per mostrare i dettagli di un progetto specifico
 
-// Route::get('/dashboard', function () {
-//     return view('dashboard');
-// })->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/show/{id}', [ProjectController::class, 'show'])
+    ->middleware(['auth'])
+    ->name('project.show');// Rotta per mostrare il form di modifica di un progetto esistente
 
-Route :: get('/create', [ProjectController :: class, 'create'])
-    -> middleware(['auth'])
-    -> name('project.create');
+Route::get('/project/{id}/edit', [ProjectController::class, 'edit'])
+    ->middleware(['auth'])
+    ->name('project.edit');// Rotta per aggiornare un progetto esistente nel database
 
-Route :: post('/store', [ProjectController :: class, 'store'])
-    -> middleware(['auth'])
-    -> name('project.store');
+Route::put('/project/{id}', [ProjectController::class, 'update'])
+    ->middleware(['auth'])
+    ->name('project.update');// Rotta per eliminare un progetto dal database
 
 
-Route :: get('/edit/{id}', [ProjectController :: class, 'edit'])
-    -> name('project.edit');
-
-Route :: put('/update/{id}', [ProjectController :: class, 'update'])
-    -> name('project.update');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -50,3 +37,9 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
+
+
+
+
+
+
