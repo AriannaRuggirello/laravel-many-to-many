@@ -37,6 +37,12 @@ Route :: post('/store', [ProjectController :: class, 'store'])
     -> name('project.store');
 
 
+Route :: get('/edit/{id}', [ProjectController :: class, 'edit'])
+    -> name('project.edit');
+
+Route :: put('/update/{id}', [ProjectController :: class, 'update'])
+    -> name('project.update');
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
